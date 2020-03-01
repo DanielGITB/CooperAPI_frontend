@@ -47,12 +47,18 @@ class DisplayPerformanceData extends Component {
     }
 
     let dataForLineDiagram = {
-      datasets: [{
-        data: distances,
-        label: "Historical Data"
-      }],
+      datasets: [
+        {
+          data: distances,
+          label: "Historical Data",
+          fill: true, 
+          borderColor: "#A28C74",
+          backgroundColor: "#DDCCAF",
+          pointBackgroundColor: "#3D2C23"
+        }
+      ],
       labels: labels
-    }
+    };
 
     return (
       <div>
