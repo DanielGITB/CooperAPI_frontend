@@ -1,129 +1,93 @@
-# The Cooper Tracker (API)
-*Authors are [Karolina Frostare](https://github.com/kfrostare) and [Daniel Bryant](https://github.com/DanielGITB)*
+Description
 
-![Cooper Runners App](src/cooper_app_printscreen.png)
+The client has requested a workout tracking application that will allow users to track their fitness using the Cooper Test. This is a software solution where users can calculate and record their data over time. The app also presents any historical data logged by the user.
 
-### Description
-The client has requested a workout tracking application that will allow users to track their fitness using the Cooper Test. This is a software solution where users can calculate and record their data over time. The app also presents any historical data presented by the user.
+Getting started
 
-### Getting started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+If you want to use this project as blue prints, be my guest. Here's how it's done:
 
+Installments and System dependencies
+
+First of all, make sure you get the other half of this project, the back end that runs on Ruby on Rails.. This is the front end of the application.
+
+Make sure you use the correct
 Ruby version
-```
 
-```
-* System dependencies
+rvm use -v 2.5.1
+Testing framework
 
-What things you need to install the software and how to install them
+If you're anything like me you wanna test A LOT before deploying. I used Cypress, Jest and Enzyme while building this application.
 
-* Configuration
-```
+yarn -D add cypress
+yarn add -D enzyme enzyme-adapter-react-16 react-test-renderer
+Database creation
 
-```
+Our database is over here, make sure you get it!
 
-* Database creation
-```
+How to run the test suite
 
-```
+yarn cy:open
+Deployment instructions
 
-* Database initialization
-```
+This software was deployed using Netlify (front end) and Heroku (back end). This is - sort of - how we did it.
 
-```
+Netlify (front)
 
-* How to run the test suite
+I'm assuming you already have an account and know how to change your url- settings.
 
-Explain how to run the automated tests for this system
+Create a New site from Git
+Choose GitHub as continuous deployment
+Pick your Repo and double check deploy settings
+Click on 'Deploy site'
+Heroku (back)
 
-### Services
+I'm assuming you already have an account and know how to fork a Repo.
 
+Create a new project
+Add Repo through GitHub
+Disable 'Wait for CI to pass before deploy'
+Enable automatic deploys
+Choose branch (I went with master)
+Click on 'Deploy Branch'
+Visit 'settings'
+Save Heroku git URL
+Now you've got both ends up and running, let's connect them!
 
-### Deployment instructions
+Take that saved URL to the Terminal, make sure you're in the back end local Repo/folder and do:
+git remote add Heroku (your Heroku git URL)
+git remote -v
+...just to make sure you now have Heroku as a remote on you repo. 2. Install Heroku on your system, I used this (as I'm on a Linux, Ubuntu machine) but you'll need to double check what you need.
 
-Add additional notes about how to deploy this on a live system
+sudo snap install --classic heroku
+Move in to your front end index.js- file and update the axios.defaults.baseURL with the Netlify URL that was assigned to you upon deployment. Please note that when testing or making updates you don't yet want to be shown publicly, you'll need to change this to the localhost again.
+Now we should be connected, but there's nothing in the database at the moment..
 
-### Built with
+... and since the objective for this app was not to build a "create login feature" this needs to be done manually with Postman.
 
-Add part on what framework was used and so on.
+Get Postman if you haven't already, and launch
+No need to sign in, get rid of that by clicking 'cancel'
+Once on the dashboard click the plus- sign
+To add a user choose POST and enter the following to create a user and enter the application with its credentials:
+(your Heroku URL)/api/v1/auth?email=user@mail.com&password=password&password_confirmation=password
+Built with
 
-### License
+The front end of this application was built using React
+The back end of this application was built using Ruby on Rails
+The front was deployed using Netlify
+The back end was deployed using Heroku
+The Acceptance tests where implemented with Cypress
+The Component tests where implemented with Jest
+The Component tests where implemented with Enzyme
+License
 
 This project is licensed under the MIT License.
 
-### Acknowledgments
+Thank you to
 
-A big thank you to...
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-adding some info to the readme file
-adding additional info to the readme file
-adding even more
+Kayla Woodbury for helping us out with testing and bugfixing
+Jaime Cruz for helping us out with deployment
+PixaBay for a huge library of amazing and inspiring images, royalty free - one of which we chose to use for this app
+CraftAcademy for supplying the basic structure of this application
+Codevolution for teaching us about inline styling
+Canva for finding awesome colors for styling
+Chart.js for cool charts
